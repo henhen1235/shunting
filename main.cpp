@@ -20,6 +20,7 @@ int main(){
   Node* endque = nullptr;
   Node* midstack = nullptr;
   dNode* finalstack = nullptr;
+  dNode* finalstack2 = nullptr;
   dNode* treehead = nullptr;
   char in[50];
   cout << endl << "What would you like to input?(It cannot be longer then 50 and no spaces): ";
@@ -81,37 +82,52 @@ int main(){
     enqueue(peak(midstack), endque);
     pop(midstack);
   }
-
+  cout << endl;
   Node* tempstastart = endque;
     while(tempstastart != NULL){
       cout << tempstastart->getchar();
       tempstastart = tempstastart->getNext();
     }
-
+    cout << endl;
     while(endque != NULL){
       char tempchar = endque->getchar();
       cout << tempchar << endl;
       if(tempchar == '0' || tempchar == '1' || tempchar == '2' || tempchar == '3' || tempchar == '4' || tempchar == '5' || tempchar == '6' || tempchar == '7' || tempchar == '8' || tempchar == '9'){
 	dNode* doubnode = new dNode(tempchar);
+	cout << "num" << endl;
+	doubnode->setLeft(NULL);
+        doubnode->setRight(NULL);
 	pushd(doubnode, finalstack);
 	endque = endque->getNext();
       }
       else{
-	dNode* doubnode = new dNode(tempchar);
-	doubnode->setRight(peakd(finalstack));
-	popd(finalstack);
-	doubnode->setLeft(peakd(finalstack));
-	pushd(doubnode, finalstack);
-	endque = endque->getNext();
+	dNode* rightNode = peakd(finalstack);
+	cout << "right:" << rightNode->getchar() << endl;
+        popd(finalstack);
+        dNode* leftNode = peakd(finalstack);
+	cout << "left:" << leftNode->getchar() << endl;
+        popd(finalstack);
+        
+        // Create the operator node and assign its children
+        dNode* doubnode = new dNode(tempchar);
+        doubnode->setLeft(leftNode);
+        doubnode->setRight(rightNode);
+        
+        pushd(doubnode, finalstack);
+	
+        endque = endque->getNext();
       }
-    }
-    treehead = peakd(finalstack);
-    cout << endl << treehead->getLeft()->getchar() << endl;
-    cout << endl << treehead->getLeft()->getLeft()->getchar() << endl;
-	    cout << endl << treehead->getRight()->getchar() << endl;
-	    cout << endl << treehead->getLeft()->getRight()->getchar() << endl;
-    infix(treehead);
+   }
 
+    
+    treehead = peakd(finalstack);
+
+    dNode* tempno = treehead;
+
+    tempno->setLeft(NULL);
+    
+    infix(treehead);
+    cout << "infix works" << endl;
     destroy(endque);
 destroy(midstack);
  destroyd(finalstack);
@@ -121,12 +137,14 @@ destroy(midstack);
 
 void infix(dNode* root){
   if(root->getLeft() != NULL){
+    cout << "going left" <<  endl;
     infix(root->getLeft());
   }
   cout << root->getchar();
   if(root->getRight() != NULL){
-    infix(root->getLeft());
-  }
+    cout << "going right" << endl;
+    infix(root->getRight());
+   }
 }
 
 void pushd(dNode*& nchar, dNode*& stastart){
@@ -144,13 +162,10 @@ dNode* peakd(dNode* stastart){
 
 
 void popd(dNode*& stastart){
-  if(stastart == nullptr){
-    return;
-  }
-  dNode* tempnode = stastart;
-  stastart = stastart->getLeft();
-  delete tempnode;
+    if(stastart == nullptr) return;
+    stastart = stastart->getLeft();  // Do not delete the node.
 }
+
 
 void destroyd(dNode *& stastart){
   while (stastart != NULL){
