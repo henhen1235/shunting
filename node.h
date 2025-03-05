@@ -12,14 +12,14 @@ using namespace std;
 
 class Node{
  public:
-  Node(char nstudent);//create a node with a student pointer in it
+  Node(char nstudent);//create a node with a char in it
   ~Node();//destuctor
-  char getchar();//getting the student
-  void setchar(char nchar);
+  char getchar();//getting the char
+  void setchar(char nchar);//setting the char
   void setNext(Node* newnode);//setting the next node
   Node* getNext();//getting the next node
  private:
-  char stored;//student pointer
+  char stored;//char
   Node* nextnode;//node pointer
 };
 #endif

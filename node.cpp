@@ -11,19 +11,19 @@ Node.cpp
 using namespace std;
 
 Node::Node(char nstudent) {
-  stored = nstudent; // set student as student pointer
+  stored = nstudent; // set stored as char
   nextnode = NULL;//set next node to null for now
 }
 
-Node::~Node(){//set student and next node to null
-  nextnode = NULL;//keep in mind that since the code doens't actually destruct student you need to do that also manually in main.cpp
+Node::~Node(){//set char and next node to null
+  nextnode = NULL;
 }
 
-void Node::setchar(char nchar){
+void Node::setchar(char nchar){//set char
   stored = nchar;
 }
 
-char Node::getchar(){// if the student exists then return it
+char Node::getchar(){// return char
     return stored;
 }
 

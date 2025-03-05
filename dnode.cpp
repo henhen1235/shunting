@@ -11,36 +11,36 @@ dNode.cpp
 using namespace std;
 
 dNode::dNode(char nstudent) {
-  stored = nstudent; // set student as student pointer
-  rightnode = NULL;//set next node to null for now
+  stored = nstudent; // set char as stored
+  rightnode = NULL;//set right node to null for now
+  leftnode = NULL;//set left node to null for now
+}
+
+dNode::~dNode(){//destruct
+  rightnode = NULL;
   leftnode = NULL;
 }
 
-dNode::~dNode(){//set student and next node to null
-  rightnode = NULL;//keep in mind that since the code doens't actually destruct student you need to do that also manually in main.cpp
-  leftnode = NULL;
-}
-
-void dNode::setchar(char nchar){
+void dNode::setchar(char nchar){// setting char
   stored = nchar;
 }
 
-char dNode::getchar(){// if the student exists then return it
+char dNode::getchar(){//getting char
     return stored;
 }
 
 void dNode::setRight(dNode* newnode){
-  rightnode = newnode; //setting the next node up
+  rightnode = newnode; //setting the right node up
 }
 
 void dNode::setLeft(dNode* newnode){
-  leftnode = newnode; //setting the next node up
+  leftnode = newnode; //setting the left node up
 }
 
 dNode* dNode::getRight(){
-  return rightnode;//returning the node
+  return rightnode;//returning the right node
 }
 
 dNode* dNode::getLeft(){
-  return leftnode;//returning the node
+  return leftnode;//returning the left node
 }

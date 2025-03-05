@@ -12,17 +12,17 @@ using namespace std;
 
 class dNode{
  public:
-  dNode(char nstudent);//create a node with a student pointer in it
+  dNode(char nstudent);//create a node with a char in it
   ~dNode();//destuctor
-  char getchar();//getting the student
-  void setchar(char nchar);
-  void setRight(dNode* newnode);//setting the next node
-  void setLeft(dNode* newnode);//setting the next node
-  dNode* getRight();//getting the next node
-  dNode* getLeft();//getting the next node
+  char getchar();//getting the char
+  void setchar(char nchar);//setting the char
+  void setRight(dNode* newnode);//setting the right node
+  void setLeft(dNode* newnode);//setting the left node
+  dNode* getRight();//getting the right node
+  dNode* getLeft();//getting the left node
  private:
   char stored;//student pointer
-  dNode* rightnode;//node pointer
-  dNode* leftnode;
+  dNode* rightnode;//left pointer
+  dNode* leftnode;//right node pointer
 };
 #endif
