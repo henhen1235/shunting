@@ -174,19 +174,19 @@ void infix(dNode* root){//function for outputing in infix
 void prefix(dNode* root){//function for outputting in prefix
   cout << root->getchar();
   if(root->getLeft() != NULL){
-    infix(root->getLeft());
+    prefix(root->getLeft());
   }
   if(root->getRight() != NULL){
-    infix(root->getRight());
+    prefix(root->getRight());
    }
 }
 
 void postfix(dNode* root){//function for outputting in postfix
   if(root->getLeft() != NULL){
-    infix(root->getLeft());
+    postfix(root->getLeft());
   }
   if(root->getRight() != NULL){
-    infix(root->getRight());
+    postfix(root->getRight());
    }
  cout << root->getchar();
 }
